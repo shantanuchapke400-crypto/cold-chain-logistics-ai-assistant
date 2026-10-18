@@ -1,0 +1,20 @@
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Logs and temporary files
+*.log
+
+# Local data and generated cache
+data/raw/
+data/cache/
