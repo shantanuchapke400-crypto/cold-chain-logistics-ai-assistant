@@ -89,8 +89,9 @@ def query_telemetry_db(sql_query: str) -> str:
     Risk_Classification, Delay_Probability, Port_Congestion_Level, Route_Risk_Index.
     Always write standard T-SQL queries.
     """
-    
-    print("Available ODBC drivers:", pyodbc.drivers())
+
+    import streamlit as st
+    st.write("Available ODBC drivers:", pyodbc.drivers())
 
     connection_string = (
             f"DRIVER={{ODBC Driver 18 for SQL Server}};"
