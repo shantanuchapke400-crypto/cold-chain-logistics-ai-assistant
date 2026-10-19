@@ -126,14 +126,23 @@ if app_mode == "🧊 Dispatch Console":
     for entry in st.session_state.ui_messages:
         with st.chat_message(entry["role"], avatar="👤" if entry["role"] == "user" else "🤖"):
             if "traces" in entry:
+                
                 for trace in entry["traces"]:
-                  if trace["type"] == "tool_input":
+                    if trace["type"] == "tool_input":
                         st.markdown(f"**⚡ Intent Recognized:** `{trace['name']}`")
-                        with st.expander(f"📥 View Generated Input ({trace['name']})", expanded=False):
+                        with st.expander(
+                        f"📥 View Generated Input ({trace['name']})",
+                            expanded=False,
+                        ):
                             st.json(trace["args"])
-            elif trace["type"] == "tool_output":
-                        with st.expander(f"📤 View Raw Output ({trace['name']})", expanded=False):
-                            st.code(trace["content"], language="text")
+
+                    elif trace["type"] == "tool_output":
+                       with st.expander(
+                            f"📤 View Raw Output ({trace['name']})",
+                            expanded=False,
+                        ):
+                        st.code(trace["content"], language="text")
+
             st.markdown(entry["content"])
 
     if user_input := st.chat_input("Query fleet telemetry, corridor updates, or compliance thresholds..."):
