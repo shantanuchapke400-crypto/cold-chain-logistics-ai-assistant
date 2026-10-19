@@ -1,6 +1,7 @@
 import os 
 import urllib
 import requests
+import pyodbc
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
@@ -121,6 +122,8 @@ def query_telemetry_db(sql_query: str) -> str:
             return formatted_output
     except Exception as e:
         return f"Database Error: {str(e)}"
+
+    print("Available ODBC drivers:", pyodbc.drivers())
 
 @tool
 def fetch_corridor_conditions(latitude: float, longitude: float) -> str:
